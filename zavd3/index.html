@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Завдання 3</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden; /* Забороняємо прокручування сторінки */
+    }
+    .field-container{
+        border: 5px inset black;
+        width: 400px;
+        height: 200px;
+    }
+    #field {
+      position: relative;
+      width: 400px;
+      height: 200px;
+      background-color: rgb(155, 211, 71);
+      border: 5px outset black;
+      margin: 10px auto;
+    }
+    .field-line{
+        border-top: 3px dotted black;
+        margin: 20px 0;
+    }
+    #ball {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: white;
+      border: 2px solid black;
+      transition: left 0.3s ease, top 0.3s ease;
+      z-index: 10000;
+    }
+  </style>
+</head>
+<body>
+    <div id="field">
+        <div class="field-container">
+        <div class="field-line"></div>
+        <div class="field-line"></div>
+        <div class="field-line"></div>
+        <div class="field-line"></div>
+        <div class="field-line"></div>
+        <div class="field-line"></div>
+        <div class="field-line"></div>
+        <div class="field-line"></div>
+        <div id="ball"></div>    
+    </div>
+    </div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var field = document.getElementById('field');
+  var ball = document.getElementById('ball');
+
+  field.addEventListener('click', function (event) {
+    var fieldRect = field.getBoundingClientRect();
+
+    var ballLeft = Math.min(
+      Math.max(event.clientX - fieldRect.left - ball.clientWidth / 2, 0),
+      field.clientWidth - ball.clientWidth
+    );
+
+    var ballTop = Math.min(
+      Math.max(event.clientY - fieldRect.top - ball.clientHeight / 2, 0),
+      field.clientHeight - ball.clientHeight
+    );
+
+    var ballRight = Math.min(
+      Math.max(event.clientX - fieldRect.right + ball.clientWidth / 2, 0),
+      field.clientWidth - ball.clientWidth
+    );
+
+    var ballBottom = Math.min(
+      Math.max(event.clientY - fieldRect.bottom + ball.clientHeight / 2, 0),
+      field.clientHeight - ball.clientHeight
+    );
+
+    ball.style.left = ballLeft + 'px';
+    ball.style.top = ballTop + 'px';
+    ball.style.right = ballRight + 'px';
+    ball.style.bottom = ballBottom + 'px';
+  });
+});
+// const field = document.getElementById('field');
+// const ball = document.getElementById('ball');
+
+// field.addEventListener('mousemove', moveBall);
+// document.addEventListener('scroll', moveBall);
+
+// function moveBall(event) {
+//   const fieldRect = field.getBoundingClientRect();
+//   const ballRect = ball.getBoundingClientRect();
+
+//   const mouseX = event.clientX;
+//   const mouseY = event.clientY + window.scrollY;
+
+//   const ballX = mouseX - fieldRect.left - ballRect.width / 2;
+//   const ballY = mouseY - fieldRect.top - ballRect.height / 2;
+
+//   const maxX = fieldRect.width - ballRect.width;
+//   const maxY = fieldRect.height - ballRect.height;
+
+//   const clampedX = Math.min(maxX, Math.max(0, ballX));
+//   const clampedY = Math.min(maxY, Math.max(0, ballY));
+
+//   ball.style.transform = `translate(${clampedX}px, ${clampedY}px)`;
+// }
+
+</script>
+</body>
+</html>

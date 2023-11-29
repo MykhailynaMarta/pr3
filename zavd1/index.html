@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Завдання 1</title>
+  <style>
+    *{
+        margin: 0;
+        box-sizing: border-box;
+        padding: 0;
+    }
+    .landing{
+        margin: 0 auto;
+        border: 3px solid black;
+        width: 600px;
+        font-family: Arial, Helvetica, sans-serif;
+        
+    }
+    .message-container {
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+      background-color: lavender;
+    }
+    .message-container:first-child{
+        border-top: 1 solid #ccc;
+    }
+    h1{
+        font-size: 16px;
+    }
+    .hide-btn,
+    .show-btn {
+      display: inline-block;
+      margin-right: 5px;
+      color: red;
+      background: none;
+      border: none;
+      cursor: pointer;         
+    }
+     </style>
+</head>
+<body>
+<div class="landing">
+    <div class="message-container">
+        <h1>Android</h1>
+    <p>Android - це операційна система для мобільних пристроїв, розроблена компанією Google.
+         Вона базується на ядрі Linux та використовується в широкому спектрі пристроїв, таких 
+         як смартфони, планшети, смарт-телевізори та інше. Android є відкритою платформою, що 
+         дозволяє розробникам створювати різноманітні додатки для користувачів.</p>
+    <button class="hide-btn">[х]</button>
+    <button class="show-btn" style="display:none;">Розгорнути</button>
+    </div>
+
+    <div class="message-container">
+        <h1>Mac OS</h1>
+    <p>macOS (раніше відома як Mac OS X і OS X) - це операційна система, 
+        розроблена компанією Apple Inc. Вона призначена для комп'ютерів Macintosh, 
+        включаючи MacBook, iMac та інші пристрої від Apple. macOS відрізняється своєю
+         елегантністю та високою інтеграцією з апаратним забезпеченням Apple.</p>
+    <button class="hide-btn">[х]</button>
+    <button class="show-btn" style="display:none;">Розгорнути</button>
+    </div>
+    <div class="message-container">
+        <h1>Windows Phone</h1>
+    <p>Windows Phone - це мобільна операційна система від Microsoft, яка призначена для 
+        смартфонів та інших мобільних пристроїв. Однак у 2017 році Microsoft оголосила про
+        припинення розвитку та підтримки Windows Phone. Замість цього Microsoft порадила
+         користувачам перейти на платформу Android чи iOS.</p>
+    <button class="hide-btn">[х]</button>
+    <button class="show-btn" style="display:none;">Розгорнути</button>
+    </div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var hideButtons = document.querySelectorAll('.hide-btn');
+
+    hideButtons.forEach(function (button) {
+      button.addEventListener('click', function () {
+        var messageContainer = button.parentNode;
+
+        button.style.display = 'none';
+
+        var showButton = messageContainer.querySelector('.show-btn');
+        showButton.style.display = 'inline-block';
+
+        messageContainer.querySelector('p').style.display = 'none';
+      });
+    });
+
+    var showButtons = document.querySelectorAll('.show-btn');
+
+    showButtons.forEach(function (button) {
+      button.addEventListener('click', function () {
+        var messageContainer = button.parentNode;
+
+        var hideButton = messageContainer.querySelector('.hide-btn');
+        hideButton.style.display = 'inline-block';
+
+        button.style.display = 'none';
+
+        messageContainer.querySelector('p').style.display = 'block';
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
